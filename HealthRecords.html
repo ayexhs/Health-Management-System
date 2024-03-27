@@ -1,0 +1,255 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #647D87;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin: 0 0.25em;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        .record-section {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #20869f;
+        }
+
+        .form-field input[type="radio"] {
+            display: inline-block;
+            margin-right: 5px; /* Adjust as needed */
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Health Records</h1>
+    </header>
+
+    <nav>
+        <button onclick="showSection('prescription')" style="width: 200px; height: 30px;margin-right: 10px;background-color:  #555;border: 0px; color: #f5f5f5;">Online Prescription</button>
+        <button onclick="showSection('certificate')" style="width: 200px; height: 30px;margin-right: 10px;background-color:  #555;border: 0px; color: #f5f5f5;">Online Medical Certificate</button>
+        <button onclick="showSection('followup')" style="width: 200px; height: 30px;margin-right: 10px;background-color:  #555;border: 0px; color: #f5f5f5;">Follow-up on the Doctor</button>
+        <button onclick="showSection('vaccination')" style="width: 200px; height: 30px;margin-right: 10px;background-color:  #555;border: 0px; color: #f5f5f5;">Vaccination Record</button>
+    </nav>
+    </nav>
+
+    
+    <section id="prescription" class="record-section">
+        <h2>Online Prescription</h2>
+        <p>This section contains information about your online prescriptions.</p>
+        <a href="addpres.html"><center><button class="btn" style="background-color: green; color: white;border: 0px;height: 40px;  padding: 7px;margin-bottom: 10px;width: 150px;" onclick="submitPrescription()">Add Prescription</button></center></a>
+        <a href="viewpres.html"><center><button class="btn" style="background-color: green; color: white;border: 0px;height: 40px;  padding: 7px;margin-bottom: 10px;width: 150px;" onclick="submitPrescription()">View Prescription</button></center></a>
+        <a href="updatepres.html"><center><button class="btn" style="background-color: green; color: white;border: 0px;height: 40px;  padding: 7px;margin-bottom: 10px;width: 150px;" onclick="submitPrescription()">Update Prescription</button></center></a>
+
+        <div class="form-container">
+        </div>
+    </section>
+
+        <!-- Display Prescription Results -->
+        <div id="prescriptionResults"></div>
+
+    <section id="certificate" class="record-section">
+        <h2>Online Medical Certificate</h2>
+        <p>This section contains information about your online medical certificates.</p>
+        <!-- Add relevant form fields, details, or data here -->
+    </section>
+
+    <section id="followup" class="record-section">
+        <h2>Follow-up on the Doctor</h2>
+        <p>This section contains information about your follow-up appointments with the doctor.</p>
+        <!-- Add relevant form fields, details, or data here -->
+    </section>
+
+    <section id="vaccination" class="record-section">
+        <h2>Vaccination Record</h2>
+        <p>This section contains information about your vaccination records.</p>
+        <!-- Add relevant form fields, details, or data here -->
+        <div class="form-container container">
+            <div class="form-field">
+                <label for="BUID">Benificiary User ID:</label>
+                <input type="number" id="BUID" name="BUID" required="" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+<br>
+        <div class="form-container container">
+            <div class="form-field">
+                <label for="OUID">Operator User ID:</label>
+                <input type="number" id="OUID" name="OUID" required="" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+<br>
+        <div class="form-container container">
+            <div class="form-field">
+                <label for="HID">Hospital ID:</label>
+                <input type="number" id="HID" name="HID" required="" maxlength="12" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+<br>
+        <div class="form-field">
+            <label>Vaccination Status:</label>
+            <input type="radio" id="vaccinated_yes" name="vaccination_status" value="yes" onclick="showReason(false)"> Yes
+            <input type="radio" id="vaccinated_no" name="vaccination_status" value="no" onclick="showReason(true)"> No
+            <div id="reason_div" style="display: none;">
+                <label for="reason">Reason:</label><br>
+                <textarea id="reason" name="reason" rows="4" cols="80" placeholder="Enter reason for not being vaccinated and Allergies(if any)"></textarea><br>
+            </div>
+        </div>
+
+<script>
+    function showReason(isVisible) {
+        var reasonDiv = document.getElementById("reason_div");
+        if (isVisible) {
+            reasonDiv.style.display = "block";
+        } else {
+            reasonDiv.style.display = "none";
+        }
+    }
+    
+</script>
+
+
+<br>
+        <div class="form-field">
+            <label for="VaccinationFor">Vaccination for:</label>
+            <input type="text" id="VaccinationFor" name="VaccinationFor" required="">
+        </div>
+<br>
+        <div class="col-md-5">
+            <label for="Vaccination" class="form-label">Vaccination Name:</label>
+            <select class="form-select" id="Vaccination" required="">
+            <option value="">Choose...</option>
+            <option>Cholera</option>
+            <option>Rabies</option>
+            <option>Tetanus</option>
+            <option>Typhoid_Fever</option>
+            <option>Bubonic_Plague</option>
+            <option>Tuberculosis</option>
+            <option>Diphtheria</option>
+            <option>Scarlet_Fever</option>
+            <option>Pertussis</option>
+            <option>Yellow_Fever</option>
+            <option>Typhus</option>
+            <option>Influenza</option>
+            <option>Anthrax</option>
+            <option>Tick_Borne_Encephalitis</option>
+            <option>Polio</option>
+            <option>Japanese_Encephalitis</option>
+            <option>Adenovirus_4_and_7</option>
+            <option>Measles</option>
+            <option>Mumps</option>
+            <option>Rubella</option>
+            <option>Pneumonia</option>
+            <option>Meningitis</option>
+            <option>Hepatitis_B</option>
+            <option>Chicken_Pox</option>
+            <option>Haemophilus_Influenzae_Type_B_HiB</option>
+            <option>Q_Fever</option>
+            <option>Hantavirus_Hemorrhagic_Fever_With_Renal_Syndrome</option>
+            <option>Hepatitis_A</option>
+            <option>Lyme_Disease</option>
+            <option>Rotavirus</option>
+            <option>COVID_19</option>
+            <option>Chikungunya</option>
+            <option>Ebola</option>
+            <option>Respiratory_Syncytial_Virus</option>
+            <option>Dengue_Fever</option>
+            <option>Malaria</option>
+            <option>Enterovirus_71</option>
+            <option>Hepatitis_E</option>
+            <option>Non_Small_Cell_Lung_Carcinoma</option>
+            <option>Shungles</option>
+            <option>Human_Papillomavirus</option>
+            <option>Argentine_Hemorrhagic_Fever</option>
+            <option>Pneumococcal_Conjugate_Vaccine</option>
+            </select>
+            </div>
+<br>
+            <div class="form-container container">
+                <div class="form-field">
+                    <label for="DoseNo">Dose number:</label>
+                    <input type="number" id="DoseNo" name="DoseNo" required="" maxlength="1" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                </div>
+            </div>
+<br>
+<center><button class="btn" style="background-color: green; color: white; border-radius: 10px; padding: 7px;">Submit</button></center>
+
+    </section>
+    <script>
+        function submitPrescriptionForm() {
+            // Retrieve values from the form
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var age = document.getElementById('age').value;
+            var sex = document.getElementById('sex').value;
+            var height = document.getElementById('height').value;
+            var prescriptionDate = document.getElementById('prescriptionDate').value;
+            var healthIssue = document.getElementById('healthIssue').value;
+            var medicationDosage = document.getElementById('medicationDosage').value;
+
+            // Display the prescription results in the specified div
+            var prescriptionResultsDiv = document.getElementById('prescriptionResults');
+            prescriptionResultsDiv.innerHTML = `
+                <p><strong>Prescription Details:</strong></p>
+                <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+                <p><strong>Age:</strong> ${age}</p>
+                <p><strong>Sex:</strong> ${sex}</p>
+                <p><strong>Height:</strong> ${height}</p>
+                <p><strong>Date of Prescription:</strong> ${prescriptionDate}</p>
+                <p><strong>Health Issue:</strong> ${healthIssue}</p>
+                <p><strong>Medication Dosage:</strong> ${medicationDosage}</p>
+            `;
+        }
+        function showSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll('.record-section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            var selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+    </script>
+
+</body></html>

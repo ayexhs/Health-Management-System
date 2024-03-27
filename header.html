@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav</title>
+    <style>
+        *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+          
+      }
+      body{
+        background-color: black;
+      }
+
+      .image-container {
+        position: relative;
+        display: inline-block;
+      }
+      .carousel-inner {
+          width: 100%;
+      }
+
+      .image-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+      }
+
+      nav {
+          display: flex;
+          justify-content: center;
+          background-color: #444;
+          padding: 0.5em;
+      }
+
+      nav a {
+          color: #fff;
+          text-decoration: none;
+          padding: 0.5em 1em;
+          margin: 0;
+          border-radius: 4px;
+          transition: background-color 0.3s;
+      }
+
+      section {
+          display: flex;
+          justify-content: space-between;
+          padding: 2em;
+      }
+
+      #signup-section,
+      #form-section,
+      #online-srs-section {
+          width: 45%;
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 8px;
+      }
+
+      #language-select {
+          margin-bottom: 20px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+      }
+      
+      label {
+          margin-bottom: 8px;
+      }
+
+      input {
+          padding: 8px;
+          margin-bottom: 16px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .dark-mode-switch {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.dark-mode-switch .switch {
+    margin-left: 4px;
+}
+.switch-label {
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+}
+/* the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+    margin-left: 4px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1A1B1F;
+    transition: .2s;
+
+}
+.darkmode .slider {
+    box-shadow:  2px 2px 3px #34353a, 
+                 -2px -2px 3px #000104;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background: #9294b8;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #f4f4f4;
+}
+input:checked + .slider:before {
+    transform: translateX(21px);
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 11px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top mt-0" style="margin-top: 0; padding: 0;">
+        <div class="container-fluid" style="background-color: #647D87; ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16" style="margin: 10px; color:white">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5"/>
+            <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z"/>
+          </svg>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./AboutUs.html" style="color: white;">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./ContactUs.html" style="color: white;">Contact</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                  Services
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">English</a></li>
+                  <li><a class="dropdown-item" href="#">Hindi</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                  Languages
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">English</a></li>
+                  <li><a class="dropdown-item" href="#">Hindi</a></li>
+                </ul>
+              </li>
+            </ul>
+  
+            <div class="text-end">
+              <a href="OnlineSOS.html"><button type="button" class="btn btn-danger">SOS</button></a>
+            </div>
+  
+            <div class="nav-item dropdown" style="margin-right: 20px;">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                Login
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" >
+                <a class="dropdown-item" href="UserLogin.html">User Login</a>
+                <a class="dropdown-item" href="ManagementLogin.html">Management Login</a>
+                <a class="dropdown-item" href="GovernmentLogin.html">Government Login</a>
+            </div>
+            </ul>
+            </div>
+          </form>
+          </div>
+          <div class="nav-item">
+            <label class="switch-label" for="dark-mode-switch">Dark mode</label>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-switch">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        </div>
+      </nav>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

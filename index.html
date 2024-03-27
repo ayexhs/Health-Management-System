@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swasth Bharat Pranali</title>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+          
+      }
+      body{
+        background-color: black;
+      }
+
+      .image-container {
+        position: relative;
+        display: inline-block;
+      }
+      .carousel-inner {
+          width: 100%;
+      }
+
+      .image-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+      }
+
+      nav {
+          display: flex;
+          justify-content: center;
+          background-color: #444;
+          padding: 0.5em;
+      }
+
+      nav a {
+          color: #fff;
+          text-decoration: none;
+          padding: 0.5em 1em;
+          margin: 0;
+          border-radius: 4px;
+          transition: background-color 0.3s;
+      }
+
+      section {
+          display: flex;
+          justify-content: space-between;
+          padding: 2em;
+      }
+
+      #signup-section,
+      #form-section,
+      #online-srs-section {
+          width: 45%;
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 8px;
+      }
+
+      #language-select {
+          margin-bottom: 20px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+      }
+      
+      label {
+          margin-bottom: 8px;
+      }
+
+      input {
+          padding: 8px;
+          margin-bottom: 16px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .carousel-inner {
+          width: 100%;
+      }
+
+
+/* RESET */
+.darkmode{
+    background-color: #000104;
+    color: white;
+}
+
+/* STYLING */
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+    color: #a2a2a2;
+    font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+}
+.darkmode .container {
+    background-color: #1A1B1F;
+    color: #8a8a8a;
+}
+.tabs-container { 
+    width: 540px;
+    max-width: 800px; 
+    min-width: 800px;
+    margin: auto;
+}
+
+/* Style the tabs */
+.tabs {
+    margin-bottom: 28px; 
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabs a {
+    cursor: pointer;
+    padding: 12px 10px;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 18px;
+    transition: background 0.1s, color 0.1s;
+    background: linear-gradient(145deg, #ffffff, #dcdcdc);
+    box-shadow:  3px 3px 5px #bebebe, 
+                 -3px -3px 5px #ffffff;
+}
+.darkmode .tabs a {
+    background: linear-gradient(145deg, #1c1d21, #17181c);
+    box-shadow:  3px 3px 6px #101114, 
+                 -3px -3px 6px #24252a;
+}
+
+/* Change background color of tabs on hover */
+.tabs a:hover {
+    background: linear-gradient(145deg, #f4f4f4, #cecece);
+    color: #888;
+}
+.darkmode .tabs a:hover {
+    background: #141414;
+    color: #bbb;
+}
+
+/* Styling for active tab */
+.tabs a.active {
+    background-color: #f4f4f4;
+    color: #bdbdbd;
+    cursor: default;
+    padding: 14px 300px 10px 26px;
+    background: #f4f4f4;
+    box-shadow: inset 3px 3px 5px #cbcbcb, 
+                inset -3px -3px 5px #ffffff;
+}
+.darkmode .tabs a.active {
+    background: #1A1B1F;
+    box-shadow: inset  3px 3px 6px #101114, 
+                inset -3px -3px 6px #24252a; 
+    color: #6a6a6a;
+}
+
+
+/* Style the tab content */
+.tabcontent {
+    padding: 4px;
+    min-height: 288px;
+    display: none;  
+    text-align: center;  
+    border-radius: 18px;
+    background: #f4f4f4;
+    box-shadow:  3px 3px 6px #bebebe, 
+                 -3px -3px 6px #ffffff;
+}
+.darkmode .tabcontent {
+    background: linear-gradient(145deg, #1c1d21, #17181c);
+    box-shadow:  3px 3px 6px #101114, 
+                 -3px -3px 6px #24252a;
+}
+.content .active {
+    display: block;
+}
+.tabcontent p {
+    margin-bottom: 12px;
+}
+.tabcontent p:last-child {
+    margin-bottom: 0;
+}
+
+/* THE DARKMODE SWITCH */ 
+.dark-mode-switch {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.dark-mode-switch .switch {
+    margin-left: 4px;
+}
+.switch-label {
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+}
+/* the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+    margin-left: 4px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1A1B1F;
+    transition: .2s;
+
+}
+.darkmode .slider {
+    box-shadow:  2px 2px 3px #34353a, 
+                 -2px -2px 3px #000104;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background: #9294b8;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #f4f4f4;
+}
+input:checked + .slider:before {
+    transform: translateX(21px);
+}
+/* Rounded sliders */
+.slider.round {
+    border-radius: 11px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+/* Styling for FAQS */
+h1 {
+      text-align: center;
+}
+
+  .faq-item {
+      margin-bottom: 20px;
+      text-align: center;
+  }
+
+  .question {
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  .answer {
+      display: none;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+  }
+
+  .answer.active {
+      display: block;
+  }
+
+
+/*==============================*/
+.small-screen {
+    display: none;
+    background-color: #f4f4f4;
+    height: 100vh;
+    color: #a2a2a2;
+    font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+}
+.darkmode .small-screen {
+    background-color: #1A1B1F; 
+    color: #8a8a8a;
+}
+.small-screen-content {
+    width: 70%;
+    margin: auto;
+}
+@media only screen and (max-width: 600px) {
+    .container {
+        display: none;
+    }
+    .small-screen {
+        display: flex;
+    }
+    .tabcontent {
+        display: block;
+    }
+}
+
+/* Services */
+        .card-cover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-cover:hover .description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+
+        .dark-mode #brightnessButton {
+    display: none;
+}
+
+.dark-mode #moonButton {
+    display: inline-block;
+}
+
+/* Add styles for light mode */
+#brightnessButton {
+    display: inline-block;
+}
+
+#moonButton {
+    display: none;
+}
+
+  </style>
+    <script src="tabs.js" defer></script>
+</head>
+<body>
+
+<!------------- Fixed navbar ----------->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top mt-0" style="margin-top: 0; padding: 0;">
+      <div class="container-fluid" style="background-color: #2D9596; ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16" style="margin: 10px; color:white">
+          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5"/>
+          <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z"/>
+        </svg>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./AboutUs.html" style="color: white;">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./ContactUs.html" style="color: white;">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                Services
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">Hindi</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                Languages
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">Hindi</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="text-end">
+            <a href="OnlineSOS.html"><button type="button" class="btn btn-danger">SOS</button></a>
+          </div>
+
+          <div class="nav-item dropdown" style="margin-right: 20px;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+              Login
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" >
+              <a class="dropdown-item" href="UserLogin.html">User Login</a>
+              <a class="dropdown-item" href="ManagementLogin.html">Management Login</a>
+              <a class="dropdown-item" href="GovernmentLogin.html">Government Login</a>
+          </div>
+          </ul>
+          </div>
+        </form>
+        </div>
+        <div class="nav-item">
+          <button type="button" class="btn btn-outline-secondary" id="brightnessButton" style="border-color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+            <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"></path>
+            </svg>
+            <span class="visually-hidden">Button</span>
+          </button>
+
+          <button type="button" class="btn btn-outline-secondary"  id="moonButton" style="border-color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-moon-fill" viewBox="0 0 16 16">
+            <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"></path>
+            </svg>
+            <span class="visually-hidden">Button</span>
+          </button>
+      </div>
+      </div>
+    </nav>
+    <script>
+    const brightnessButton = document.getElementById('brightnessButton');
+    const moonButton = document.getElementById('moonButton');
+
+    brightnessButton.addEventListener('click', () => {
+        brightnessButton.style.display = 'none';
+        moonButton.style.display = 'inline-block';
+    });
+
+    moonButton.addEventListener('click', () => {
+        brightnessButton.style.display = 'inline-block';
+        moonButton.style.display = 'none';
+});
+
+</script>
+
+
+      <!-- <--------carousel------->
+      <div style="max-width:100%; max-height: 500px; margin: auto; padding-bottom: 0px; margin-bottom: 0px;">
+      <div id="carouselExampleCaptions" class="carousel slide" style="padding-top: 60px;">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="image-container">
+              <img src="./images/Doctor1.png" class="d-block w-100" alt="Doctor">
+            </div>
+            
+            <div class="carousel-caption d-none d-md-block text-start" style="margin-left: 0;margin-bottom: 150px;">
+              <h1 style="text-align: start;">Welcome to<br>Swasth Bharat Pranali</h1><br>
+              <p>Our dedicated team of healthcare professionals is committed to guiding you on your health 
+                journey, empowering you to make informed decisions and fostering a sense of well-being 
+                at every step.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="image-container">
+              <img src="./images/Patient1.png" class="d-block w-100" alt="Doctor">
+            </div>
+            <div class="carousel-caption d-none d-md-block text-start" style="margin-bottom: 150px;" >
+              <h1 style="text-align: start;align-items: center;">Check your Health records here:</h1><br>
+              <button type="button" class="btn btn-success" >
+                <a href="Healthrecords.html" style="color: white; text-decoration: none;">Check my records</a>
+            </button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="image-container">
+              <img src="./images/Medicine1.png" class="d-block w-100" alt="Doctor">
+            </div>
+            <div class="carousel-caption d-none d-md-block text-start" style="margin-bottom: 150px;">
+              <h1>Third slide label</h1>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div>
+      <br><br>
+
+      <!-- <------tabs ------->
+        <div id="container" style="margin-top: 10px; padding-top: 50px;margin-bottom: 20px;">
+          <div id="tabs" class="tabs-container">
+              <center><h2 style="padding-bottom: 40px;">Find the nearest Hospital around you:</h2></center>
+              <div class="tabs">
+                  <center><a id="tab1" data-tab="1" class="tab link-secondary" style="text-decoration: none;">By State</a></center>
+                  <center><a id="tab2" data-tab="2" class="tab link-secondary" style="text-decoration: none;">By Pincode</a></center>
+                  <center><a id="tab3" data-tab="3" class="tab link-secondary" style="text-decoration: none;">By District</a></center>
+              </div>
+              <hr style="background-color: #2D9596; height: 5px;">
+              <div class="content">
+                  <div id="tabcontent1" data-tab="1" class="tabcontent">
+                    <label for="states" style="font-size: 20px; margin: 10px;">Select Your State/UT:</label><br><br>
+                    <select id="states" name="states" style="margin: 20px; padding:6px;">
+                      <option value="Choose...">Choose...</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli</option>
+                      <option value="Daman and Diu">Daman and Diu</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Puducherry">Puducherry</option>
+                    </select>
+                    <button class="btn btn-success">Search</button>
+                  </div>
+                  <div id="tabcontent2" data-tab="2" class="tabcontent">
+                    <center><div class="col-6">
+                      <label for="pincode" class="form-label" style="font-size: 20px; margin: 10px;">Enter Pincode:</label><br><br>
+                      <div class="input-group has-validation" style="margin: 20px;">
+                      <input type="number" class="form-control" id="floatingInput" placeholder="XXXXXX" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                      </div>
+                      <button class="btn btn-success">Search</button>
+                    </div></center>
+                  </div>
+                  <div id="tabcontent3" data-tab="3" class="tabcontent">
+                    <div id="tabcontent3" data-tab="3" class="tabcontent">
+                        <!---------------------- Show Map here------------ -->
+                    </div>
+                  </div>
+              </div>
+          </div>
+        
+          <div class="dark-mode-switch">
+              <label class="switch-label" for="dark-mode-switch">Dark mode</label>
+              <label class="switch">
+                  <input type="checkbox" id="dark-mode-switch">
+                  <span class="slider round"></span>
+              </label>
+          </div>
+        
+      </div><hr>
+      <div>
+        <h1>Frequently Asked Questions (FAQs)</h1><hr>
+  
+        <div class="faq-item">
+            <div class="question" onclick="toggleAnswer(this)">1. What services does Swasth Bharat Pranali provide?</div>
+            <div class="answer">
+              Swasth Bharat Pranali provides a range of healthcare services, including preventive care, health education, vaccination programs, and access to affiliated healthcare facilities.
+            </div>
+        </div>
+  
+        <div class="faq-item">
+            <div class="question" onclick="toggleAnswer(this)">2. How can I access healthcare services through Swasth Bharat Pranali?</div>
+            <div class="answer">
+              To access healthcare services, you can visit our official website or contact our helpline for information on registered healthcare providers and facilities in your area.
+            </div>
+        </div>
+        <div class="faq-item">
+          <div class="question" onclick="toggleAnswer(this)">3. What are the eligibility criteria for availing health services?</div>
+          <div class="answer">
+            Eligibility criteria may vary for different services. Generally, individuals may qualify based on factors such as income, residence, or specific health conditions. Check our official guidelines or contact us for detailed information.
+          </div>
+      </div>
+      <div class="faq-item">
+        <div class="question" onclick="toggleAnswer(this)">4. How can I find a healthcare facility near me that is affiliated with Swasth Bharat Pranali?</div>
+        <div class="answer">
+          Visit our website and use the hospital locator tool to find healthcare providers and facilities in your vicinity that are affiliated with Swasth Bharat Pranali.
+        </div>
+    </div>
+    <div class="faq-item">
+      <div class="question" onclick="toggleAnswer(this)">5. What preventive measures can I take to maintain good health?</div>
+      <div class="answer">
+        Practice regular handwashing, maintain a balanced diet, engage in regular physical activity, stay up-to-date on vaccinations, and follow health guidelines provided by Seraphic Health Directorate.
+      </div>
+  </div>
+  
+        <!-- Add more FAQ items as needed -->
+  
+    </div>
+    <script>
+      function toggleAnswer(element) {
+          const answer = element.nextElementSibling;
+          answer.classList.toggle('active');
+      }
+
+      // JavaScript to trigger the carousel's next slide every 3 seconds
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select the carousel element
+    var carouselElement = document.querySelector("#carouselExampleCaptions");
+    // Create a new Bootstrap carousel instance
+    var carousel = new bootstrap.Carousel(carouselElement);
+    // Function to move to the next slide
+    function moveToNextSlide() {
+      carousel.next();
+    }
+    // Set an interval to move to the next slide every 3 seconds
+    setInterval(moveToNextSlide, 3000); // Adjust the interval (in milliseconds) as needed
+  });
+  </script>
+      
+      <!------ Sevices ------>
+      <center><hr style="height: 10px; width: 80%; background-color: black; border: none;"></center>
+      <div style="margin-left: 60px;">
+        <h2>Services:</h2>
+      </div>
+      <div class="container pt-1 py-1" id="custom-cards">
+        <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+            <div class="col">
+                <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                    <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Service 1</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="d-flex align-items-center me-3">
+                                <small>Service description</small>
+                            </li>
+                        </ul>
+                        <div class="description">
+                            <p>This is a detailed description of Service 1.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col">
+              <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                  <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                      <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Service 2</h3>
+                      <ul class="d-flex list-unstyled mt-auto">
+                          <li class="d-flex align-items-center me-3">
+                              <small>Service description</small>
+                          </li>
+                      </ul>
+                      <div class="description">
+                          <p>This is a detailed description of Service 2.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col">
+                <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                    <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Service 3</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="d-flex align-items-center me-3">
+                                <small>Service description</small>
+                            </li>
+                        </ul>
+                        <div class="description">
+                            <p>This is a detailed description of Service 3.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+              <div class="card card-cover h-80 overflow-hidden text-bg-dark rounded-4 shadow-lg">
+                  <div class="d-flex flex-column h-100 p-5 text-white text-shadow-1">
+                      <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Service 4</h3>
+                      <ul class="d-flex list-unstyled mt-auto">
+                          <li class="d-flex align-items-center me-3">
+                              <small>Service description</small>
+                          </li>
+                      </ul>
+                      <div class="description">
+                          <p>This is a detailed description of Service 4.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- --------------------------------footer------------ -->
+
+      <div class="container" style="background-color: #2D9596;">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+          <div class="col mb-3">
+            <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+              <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <p class="text-body-secondary">© 2023</p>
+          </div>
+      
+          <div class="col mb-3">
+      
+          </div>
+      
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+      
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+      
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+      
+      <!-- ---------------------- -->
+      
+      <div class="small-screen">
+          <div class="small-screen-content tabcontent">
+              <p>You're going to need a bigger display my friend.</p>
+              <p class="read-more-link"><a href="https://www.samsung.com/uk/monitors/monitor-c49j89-lc49j890dkuxen/" target="_blank">Learn more<span class="icon">➡️</span></a></p>
+          </div>
+      </div>
+
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

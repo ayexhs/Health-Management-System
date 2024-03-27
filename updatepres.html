@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #647D87;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            margin: 0 0.25em;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        .record-section {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #20869f;
+        }
+
+        .form-field {
+            margin-bottom: 20px;
+        }
+
+        .form-field label {
+            display: inline-block;
+            width: 200px; /* Adjust as needed */
+            text-align: right;
+            margin-right: 20px;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="number"],
+        .form-field input[type="date"] {
+            width: 300px; /* Adjust as needed */
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-field button {
+            background-color: green;
+            color: white;
+            border: 0px;
+            height: 40px;
+            padding: 7px;
+            cursor: pointer;
+        }
+
+        .form-field button:hover {
+            background-color: #005000;
+        }
+
+        .form-field button:focus {
+            outline: none;
+        }
+
+        .form-field button:active {
+            background-color: #003300;
+        }
+
+        .form-field button:focus-visible {
+            outline: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Update Prescription:</h1>
+    </header>
+
+    <section id="prescription" class="record-section">
+        <h2>Update Prescription by filling out the following details.</h2>
+
+        <div class="form-container">
+            <div class="form-field">
+                <label for="BUID">Beneficiary User ID:</label>
+                <input type="number" id="BUID" name="BUID" required="" maxlength="12"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+
+            <div class="form-field">
+                <label for="OUID">Operator User ID:</label>
+                <input type="number" id="OUID" name="OUID" required="" maxlength="12"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+
+            <div class="form-field">
+                <label for="HID">Hospital/Institutional ID:</label>
+                <input type="number" id="HID" name="HID" required="" maxlength="3"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            </div>
+
+            <div class="form-field">
+                <label for="followUpDate">Date of prescription:</label>
+                <input type="date" id="followUpDate" name="followUpDate" required="">
+            </div>
+
+            <div class="form-field">
+                <label for="Medicine">Medicine:</label>
+                <input type="text" name="Medicine" required="">
+            </div>
+
+            <center><button class="btn">Submit Prescription</button></center>
+        </div>
+    </section>
+
+    <script>
+        <!-- Display Prescription Results -->
+        function showSection(sectionId) {
+            // Hide all sections
+            var sections = document.querySelectorAll('.record-section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            var selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>

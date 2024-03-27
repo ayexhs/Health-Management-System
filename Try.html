@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        margin: 0rem;
+        overflow: hidden;
+    }
+    #image-track> .image{
+        width: 40vmin;
+        height: 56vmin;
+        object-fit: cover;
+        object-position: center;
+    }
+    #image-track{
+        display: flex;
+        gap: 4vmin;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(0%,-50%);
+    }
+</style>
+<body>
+    <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
+        <img class="image" src="./images/Doctor.png" draggable="false"/>
+        <img class="image" src="./images/Patient.png" draggable="false"/>
+        <img class="image" src="./images/Medicine.png" draggable="false"/>
+        <img class="image" src="./images/Doctor.png" draggable="false"/>
+        <img class="image" src="./images/Patient.png" draggable="false"/>
+        <img class="image" src="./images/Medicine.png" draggable="false"/>
+        <img class="image" src="./images/Doctor.png" draggable="false"/>
+        <img class="image" src="./images/Patient.png" draggable="false"/>
+    </div>
+
+    <script>
+        const track = document.getElementById("image-track");
+
+        window.addEventListener('mousedown', e => {
+            track.dataset.mouseDownAt = e.clientX;
+        });
+
+        window.addEventListener('mouseup', () => {
+            track.dataset.mouseDownAt = "0";
+            track.dataset.prevPercentage = track.dataset.percentage;
+        });
+
+        window.addEventListener('mousemove', e => {
+            if (track.dataset.mouseDownAt === "0") return;
+
+            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
+            const maxDelta = window.innerWidth / 2;
+            const percentage = (mouseDelta / maxDelta) * -100;
+            let nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
+            nextPercentage = Math.min(nextPercentage, 0);
+            nextPercentage = Math.max(nextPercentage, -100);
+            track.dataset.percentage = nextPercentage;
+
+            // Animate the track
+            const trackAnimation = new KeyframeEffect(
+                track,
+                [{ transform: `translate(${nextPercentage}%, -50%)` }],
+                { duration: 1200, fill: "forwards" }
+            );
+            const trackAnimationPlayer = new Animation(trackAnimation, document.timeline);
+            trackAnimationPlayer.play();
+
+            // Animate each image
+            const images = track.querySelectorAll('.image');
+            images.forEach(image => {
+                const imageAnimation = new KeyframeEffect(
+                    image,
+                    [{ objectPosition: `${nextPercentage + 100}% center` }],
+                    { duration: 1200, fill: "forwards" }
+                );
+                const imageAnimationPlayer = new Animation(imageAnimation, document.timeline);
+                imageAnimationPlayer.play();
+            });
+        });
+    </script>
+</body>
+</html>
